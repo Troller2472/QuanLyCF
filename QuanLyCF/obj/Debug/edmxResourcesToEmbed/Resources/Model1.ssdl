@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyCFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CTHD">
+    <Key>
+      <PropertyRef Name="MaCTHD" />
+    </Key>
+    <Property Name="MaCTHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar" MaxLength="100" />
+    <Property Name="DonGia" Type="float" />
+    <Property Name="SoLuong" Type="int" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="500" />
+    <Property Name="NgayMuaHang" Type="datetime" />
+    <Property Name="MaHD" Type="int" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar" MaxLength="500" />
+    <Property Name="Gia" Type="float" />
+    <Property Name="GhiChu" Type="nvarchar" MaxLength="1000" />
+    <Property Name="MaLoaiSP" Type="int" />
+  </EntityType>
+  <Association Name="FK_CTHD_HoaDon">
+    <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
+    <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="CTHD">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SanPham_LoaiSP">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="CTHD_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="CTHD_SanPhamTheoMaHD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaHD" Type="int" Mode="In" />
+  </Function>
+  <Function Name="HoaDon_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="HoaDon_LuuHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
+    <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+    <Parameter Name="DonGia" Type="float" Mode="In" />
+    <Parameter Name="SoLuong" Type="int" Mode="In" />
+    <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+    <Parameter Name="NgayMuaHang" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="LoaiSP_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="LoaiSP_ThemLoaiSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenLoaiSP" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="LoaiSP_XoaLoaiSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLoaiSP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SanPham_ChonTheoLoaiSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLoaiSP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SanPham_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SanPham_SP_ChonSPTheoLoai1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLoaiSP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SanPham_SP_ChonSPTheoTen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="SanPham_SP_GETALL1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SanPham_SuaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaSP" Type="int" Mode="In" />
+    <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="float" Mode="In" />
+    <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+    <Parameter Name="MaLoaiSP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SanPham_ThemSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+    <Parameter Name="Gia" Type="float" Mode="In" />
+    <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+    <Parameter Name="MaLoaiSP" Type="int" Mode="In" />
+  </Function>
+  <Function Name="SanPham_XoaSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaSP" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="QuanLyCFModelStoreContainer">
+    <EntitySet Name="CTHD" EntityType="Self.CTHD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HoaDon" EntityType="Self.HoaDon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CTHD_HoaDon" Association="Self.FK_CTHD_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="CTHD" EntitySet="CTHD" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SanPham_LoaiSP" Association="Self.FK_SanPham_LoaiSP">
+      <End Role="LoaiSP" EntitySet="LoaiSP" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

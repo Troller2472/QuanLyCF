@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QuanLyCFModelStoreContainer" CdmEntityContainer="QuanLyCFEntities">
+    <EntitySetMapping Name="LoaiSP">
+      <EntityTypeMapping TypeName="QuanLyCFModel.LoaiSP">
+        <MappingFragment StoreEntitySet="LoaiSP">
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+          <ScalarProperty Name="TenLoaiSP" ColumnName="TenLoaiSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SanPham">
+      <EntityTypeMapping TypeName="QuanLyCFModel.SanPham">
+        <MappingFragment StoreEntitySet="SanPham">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SanPham_ChonTheoLoaiSP" FunctionName="QuanLyCFModel.Store.SanPham_ChonTheoLoaiSP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.SanPham_ChonTheoLoaiSP_Result">
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SanPham_GetALL" FunctionName="QuanLyCFModel.Store.SanPham_GetALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.SanPham_GetALL_Result">
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LoaiSP_GetALL" FunctionName="QuanLyCFModel.Store.LoaiSP_GetALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.LoaiSP_GetALL_Result">
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+          <ScalarProperty Name="TenLoaiSP" ColumnName="TenLoaiSP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="LoaiSP_ThemLoaiSP" FunctionName="QuanLyCFModel.Store.LoaiSP_ThemLoaiSP" />
+    <FunctionImportMapping FunctionImportName="LoaiSP_XoaLoaiSP" FunctionName="QuanLyCFModel.Store.LoaiSP_XoaLoaiSP" />
+    <FunctionImportMapping FunctionImportName="SanPham_SuaSP" FunctionName="QuanLyCFModel.Store.SanPham_SuaSP" />
+    <FunctionImportMapping FunctionImportName="SanPham_ThemSP" FunctionName="QuanLyCFModel.Store.SanPham_ThemSP" />
+    <FunctionImportMapping FunctionImportName="SanPham_XoaSP" FunctionName="QuanLyCFModel.Store.SanPham_XoaSP" />
+    <FunctionImportMapping FunctionImportName="SanPham_SP_ChonSPTheoLoai1" FunctionName="QuanLyCFModel.Store.SanPham_SP_ChonSPTheoLoai1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.SanPham_SP_ChonSPTheoLoai1_Result">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SanPham_SP_GETALL1" FunctionName="QuanLyCFModel.Store.SanPham_SP_GETALL1">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.SanPham_SP_GETALL1_Result">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SanPham_SP_ChonSPTheoTen" FunctionName="QuanLyCFModel.Store.SanPham_SP_ChonSPTheoTen">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.SanPham_SP_ChonSPTheoTen_Result">
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="Gia" ColumnName="Gia" />
+          <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="CTHD">
+      <EntityTypeMapping TypeName="QuanLyCFModel.CTHD">
+        <MappingFragment StoreEntitySet="CTHD">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="NgayMuaHang" ColumnName="NgayMuaHang" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="MaCTHD" ColumnName="MaCTHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HoaDon">
+      <EntityTypeMapping TypeName="QuanLyCFModel.HoaDon">
+        <MappingFragment StoreEntitySet="HoaDon">
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CTHD_GetALL" FunctionName="QuanLyCFModel.Store.CTHD_GetALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.CTHD_GetALL_Result">
+          <ScalarProperty Name="MaCTHD" ColumnName="MaCTHD" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayMuaHang" ColumnName="NgayMuaHang" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="HoaDon_GetALL" FunctionName="QuanLyCFModel.Store.HoaDon_GetALL">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.HoaDon_GetALL_Result">
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="HoaDon_LuuHoaDon" FunctionName="QuanLyCFModel.Store.HoaDon_LuuHoaDon" />
+    <FunctionImportMapping FunctionImportName="CTHD_SanPhamTheoMaHD" FunctionName="QuanLyCFModel.Store.CTHD_SanPhamTheoMaHD">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QuanLyCFModel.CTHD_SanPhamTheoMaHD_Result">
+          <ScalarProperty Name="MaCTHD" ColumnName="MaCTHD" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="Tong" ColumnName="Tong" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="NgayMuaHang" ColumnName="NgayMuaHang" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

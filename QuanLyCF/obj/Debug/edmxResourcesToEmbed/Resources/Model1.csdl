@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyCFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="LoaiSP">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenLoaiSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SanPham" Relationship="Self.FK_SanPham_LoaiSP" FromRole="LoaiSP" ToRole="SanPham" />
+  </EntityType>
+  <EntityType Name="SanPham">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSP" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Gia" Type="Double" />
+    <Property Name="GhiChu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="MaLoaiSP" Type="Int32" />
+    <NavigationProperty Name="LoaiSP" Relationship="Self.FK_SanPham_LoaiSP" FromRole="SanPham" ToRole="LoaiSP" />
+  </EntityType>
+  <Association Name="FK_SanPham_LoaiSP">
+    <End Role="LoaiSP" Type="Self.LoaiSP" Multiplicity="0..1" />
+    <End Role="SanPham" Type="Self.SanPham" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiSP">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SanPham">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyCFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" />
+    <EntitySet Name="SanPham" EntityType="Self.SanPham" />
+    <AssociationSet Name="FK_SanPham_LoaiSP" Association="Self.FK_SanPham_LoaiSP">
+      <End Role="LoaiSP" EntitySet="LoaiSP" />
+      <End Role="SanPham" EntitySet="SanPham" />
+    </AssociationSet>
+    <FunctionImport Name="SanPham_ChonTheoLoaiSP" ReturnType="Collection(QuanLyCFModel.SanPham_ChonTheoLoaiSP_Result)">
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_GetALL" ReturnType="Collection(QuanLyCFModel.SanPham_GetALL_Result)" />
+    <FunctionImport Name="LoaiSP_GetALL" ReturnType="Collection(QuanLyCFModel.LoaiSP_GetALL_Result)" />
+    <FunctionImport Name="LoaiSP_ThemLoaiSP">
+      <Parameter Name="TenLoaiSP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="LoaiSP_XoaLoaiSP">
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_SuaSP">
+      <Parameter Name="MaSP" Mode="In" Type="Int32" />
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+      <Parameter Name="Gia" Mode="In" Type="Double" />
+      <Parameter Name="GhiChu" Mode="In" Type="String" />
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_ThemSP">
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+      <Parameter Name="Gia" Mode="In" Type="Double" />
+      <Parameter Name="GhiChu" Mode="In" Type="String" />
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_XoaSP">
+      <Parameter Name="MaSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_SP_ChonSPTheoLoai" ReturnType="Collection(QuanLyCFModel.SanPham_SP_ChonSPTheoLoai_Result)">
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_SP_GETALL" ReturnType="Collection(QuanLyCFModel.SanPham_SP_GETALL_Result)" />
+    <FunctionImport Name="SanPham_SP_ChonSPTheoLoai1" ReturnType="Collection(QuanLyCFModel.SanPham_SP_ChonSPTheoLoai1_Result)">
+      <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SanPham_SP_GETALL1" ReturnType="Collection(QuanLyCFModel.SanPham_SP_GETALL1_Result)" />
+    <FunctionImport Name="SanPham_SP_ChonSPTheoTen" ReturnType="Collection(QuanLyCFModel.SanPham_SP_ChonSPTheoTen_Result)">
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="CTHD" EntityType="QuanLyCFModel.CTHD" />
+    <EntitySet Name="HoaDon" EntityType="QuanLyCFModel.HoaDon" />
+    <AssociationSet Name="FK_CTHD_HoaDon" Association="QuanLyCFModel.FK_CTHD_HoaDon">
+      <End Role="HoaDon" EntitySet="HoaDon" />
+      <End Role="CTHD" EntitySet="CTHD" />
+    </AssociationSet>
+    <FunctionImport Name="CTHD_GetALL" ReturnType="Collection(QuanLyCFModel.CTHD_GetALL_Result)" />
+    <FunctionImport Name="HoaDon_GetALL" ReturnType="Collection(QuanLyCFModel.HoaDon_GetALL_Result)" />
+    <FunctionImport Name="HoaDon_LuuHoaDon">
+      <Parameter Name="TenKH" Mode="In" Type="String" />
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+      <Parameter Name="DonGia" Mode="In" Type="Double" />
+      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+      <Parameter Name="GhiChu" Mode="In" Type="String" />
+      <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="CTHD_SanPhamTheoMaHD" ReturnType="Collection(QuanLyCFModel.CTHD_SanPhamTheoMaHD_Result)">
+      <Parameter Name="MaHD" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SanPham_ChonTheoLoaiSP_Result">
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SanPham_GetALL_Result">
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="LoaiSP_GetALL_Result">
+    <Property Type="Int32" Name="MaLoaiSP" Nullable="false" />
+    <Property Type="String" Name="TenLoaiSP" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="SanPham_SP_ChonSPTheoLoai_Result">
+    <Property Type="Int32" Name="MaSP" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SanPham_SP_GETALL_Result">
+    <Property Type="Int32" Name="MaSP" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SanPham_SP_ChonSPTheoLoai1_Result">
+    <Property Type="Int32" Name="MaSP" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+    <Property Type="Int32" Name="MaLoaiSP" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SanPham_SP_GETALL1_Result">
+    <Property Type="Int32" Name="MaSP" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+    <Property Type="Int32" Name="MaLoaiSP" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="SanPham_SP_ChonSPTheoTen_Result">
+    <Property Type="Int32" Name="MaSP" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="500" />
+    <Property Type="Double" Name="Gia" Nullable="true" />
+    <Property Type="Int32" Name="MaLoaiSP" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="CTHD">
+    <Key>
+      <PropertyRef Name="MaCTHD" />
+    </Key>
+    <Property Name="MaCTHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenSP" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DonGia" Type="Double" />
+    <Property Name="SoLuong" Type="Int32" />
+    <Property Name="GhiChu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="NgayMuaHang" Type="DateTime" Precision="3" />
+    <Property Name="MaHD" Type="Int32" />
+    <NavigationProperty Name="HoaDon" Relationship="QuanLyCFModel.FK_CTHD_HoaDon" FromRole="CTHD" ToRole="HoaDon" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TenKH" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CTHD" Relationship="QuanLyCFModel.FK_CTHD_HoaDon" FromRole="HoaDon" ToRole="CTHD" />
+  </EntityType>
+  <Association Name="FK_CTHD_HoaDon">
+    <End Type="QuanLyCFModel.HoaDon" Role="HoaDon" Multiplicity="0..1" />
+    <End Type="QuanLyCFModel.CTHD" Role="CTHD" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HoaDon">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="CTHD">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="CTHD_GetALL_Result">
+    <Property Type="Int32" Name="MaCTHD" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="DonGia" Nullable="true" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="NgayMuaHang" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MaHD" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="HoaDon_GetALL_Result">
+    <Property Type="Int32" Name="MaHD" Nullable="false" />
+    <Property Type="String" Name="TenKH" Nullable="true" MaxLength="100" />
+  </ComplexType>
+  <ComplexType Name="CTHD_SanPhamTheoMaHD_Result">
+    <Property Type="Int32" Name="MaCTHD" Nullable="false" />
+    <Property Type="String" Name="TenSP" Nullable="true" MaxLength="100" />
+    <Property Type="Double" Name="DonGia" Nullable="true" />
+    <Property Type="Int32" Name="SoLuong" Nullable="true" />
+    <Property Type="Double" Name="Tong" Nullable="true" />
+    <Property Type="String" Name="GhiChu" Nullable="true" MaxLength="500" />
+    <Property Type="DateTime" Name="NgayMuaHang" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="MaHD" Nullable="true" />
+  </ComplexType>
+</Schema>
