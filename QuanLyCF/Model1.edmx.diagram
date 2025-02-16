@@ -12,6 +12,7 @@
         <EntityTypeShape EntityType="QuanLyCFModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="QuanLyCFModel.FK_CTHD_HoaDon" ManuallyRouted="false" />
         <AssociationConnector Association="QuanLyCFModel.FK_SanPham_LoaiSP" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QuanLyCFModel.TaiKhoan" Width="1.5" PointX="8.125" PointY="3.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

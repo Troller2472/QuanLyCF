@@ -18,3 +18,8 @@ C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.frmSanPham.reso
 C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.frmTongDoanhThu.resources
 C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.ctrlSanPham.resources
 C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.frmTest.resources
+C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.frmLogin.resources
+C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\bin\Debug\QuanLyCF.exe.manifest
+C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\bin\Debug\QuanLyCF.application
+C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.exe.manifest
+C:\Users\Admin\source\repos\QuanLyCF\QuanLyCF\obj\Debug\QuanLyCF.application

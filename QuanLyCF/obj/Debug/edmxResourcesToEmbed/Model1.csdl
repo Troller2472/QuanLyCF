@@ -96,11 +96,6 @@
     <FunctionImport Name="HoaDon_GetALL" ReturnType="Collection(QuanLyCFModel.HoaDon_GetALL_Result)" />
     <FunctionImport Name="HoaDon_LuuHoaDon">
       <Parameter Name="TenKH" Mode="In" Type="String" />
-      <Parameter Name="TenSP" Mode="In" Type="String" />
-      <Parameter Name="DonGia" Mode="In" Type="Double" />
-      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-      <Parameter Name="GhiChu" Mode="In" Type="String" />
-      <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
     </FunctionImport>
     <FunctionImport Name="LoaiSP_GetALL" ReturnType="Collection(QuanLyCFModel.LoaiSP_GetALL_Result)" />
     <FunctionImport Name="LoaiSP_ThemLoaiSP">
@@ -133,6 +128,23 @@
     </FunctionImport>
     <FunctionImport Name="SanPham_XoaSP">
       <Parameter Name="MaSP" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="TaiKhoan" EntityType="QuanLyCFModel.TaiKhoan" />
+    <FunctionImport Name="CTHD_ThemHDCuoi">
+      <Parameter Name="TenKH" Mode="In" Type="String" />
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+      <Parameter Name="DonGia" Mode="In" Type="Double" />
+      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+      <Parameter Name="GhiChu" Mode="In" Type="String" />
+      <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="CTHD_ThemSP">
+      <Parameter Name="TenSP" Mode="In" Type="String" />
+      <Parameter Name="DonGia" Mode="In" Type="Double" />
+      <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+      <Parameter Name="GhiChu" Mode="In" Type="String" />
+      <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
+      <Parameter Name="MaHD" Mode="In" Type="Int32" />
     </FunctionImport>
   </EntityContainer>
   <ComplexType Name="CTHD_GetALL_Result">
@@ -184,4 +196,12 @@
     <Property Type="Int32" Name="MaLoaiSP" Nullable="true" />
     <Property Type="Binary" Name="Anh" Nullable="true" MaxLength="Max" />
   </ComplexType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenTK" />
+    </Key>
+    <Property Name="TenTK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="admin" Type="Int32" />
+  </EntityType>
 </Schema>

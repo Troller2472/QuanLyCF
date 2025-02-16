@@ -12,10 +12,16 @@ namespace QuanLyCF
 {
     public partial class frmMain : Form
     {
-        public frmMain()
+        string user_name;
+        string user_pass;
+        int user_admin;
+        public frmMain(string username, string pass , int admin)
         {
             InitializeComponent();
 
+            user_name = user_name;
+            user_pass = pass;
+            user_admin = admin;
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -35,6 +41,15 @@ namespace QuanLyCF
         private void frmMain_Load(object sender, EventArgs e)
         {
             toolStripStatusLabel1.Text = DateTime.Now.ToString();
+            username.Text = user_name;
+            if (user_admin == 1)
+            {
+                admin.Text = "Xin Chào Admin!";
+            }
+            else
+            {
+                admin.Text = "Xin Chào Nhân Viên!";
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)

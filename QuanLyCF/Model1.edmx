@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyCFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QuanLyCFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CTHD">
           <Key>
             <PropertyRef Name="MaCTHD" />
@@ -52,6 +52,14 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTK" />
+          </Key>
+          <Property Name="TenTK" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+          <Property Name="admin" Type="int" />
+        </EntityType>
         <Association Name="FK_CTHD_HoaDon">
           <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
           <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
@@ -80,14 +88,25 @@
         <Function Name="CTHD_SanPhamTheoMaHD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="MaHD" Type="int" Mode="In" />
         </Function>
-        <Function Name="HoaDon_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="HoaDon_LuuHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="CTHD_ThemHDCuoi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
           <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
           <Parameter Name="DonGia" Type="float" Mode="In" />
           <Parameter Name="SoLuong" Type="int" Mode="In" />
           <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
           <Parameter Name="NgayMuaHang" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="CTHD_ThemSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+          <Parameter Name="DonGia" Type="float" Mode="In" />
+          <Parameter Name="SoLuong" Type="int" Mode="In" />
+          <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+          <Parameter Name="NgayMuaHang" Type="datetime" Mode="In" />
+          <Parameter Name="MaHD" Type="int" Mode="In" />
+        </Function>
+        <Function Name="HoaDon_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="HoaDon_LuuHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="LoaiSP_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="LoaiSP_ThemLoaiSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -127,6 +146,7 @@
           <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_CTHD_HoaDon" Association="Self.FK_CTHD_HoaDon">
             <End Role="HoaDon" EntitySet="HoaDon" />
             <End Role="CTHD" EntitySet="CTHD" />
@@ -136,8 +156,7 @@
             <End Role="SanPham" EntitySet="SanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QuanLyCFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -232,29 +251,24 @@
           </AssociationSet>
           <FunctionImport Name="CTHD_GetALL" ReturnType="Collection(QuanLyCFModel.CTHD_GetALL_Result)" />
           <FunctionImport Name="CTHD_SanPhamTheoMaHD" ReturnType="Collection(QuanLyCFModel.CTHD_SanPhamTheoMaHD_Result)">
-            <Parameter Name="MaHD" Mode="In" Type="Int32" />
+          <Parameter Name="MaHD" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="HoaDon_GetALL" ReturnType="Collection(QuanLyCFModel.HoaDon_GetALL_Result)" />
           <FunctionImport Name="HoaDon_LuuHoaDon">
             <Parameter Name="TenKH" Mode="In" Type="String" />
-            <Parameter Name="TenSP" Mode="In" Type="String" />
-            <Parameter Name="DonGia" Mode="In" Type="Double" />
-            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
-            <Parameter Name="GhiChu" Mode="In" Type="String" />
-            <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="LoaiSP_GetALL" ReturnType="Collection(QuanLyCFModel.LoaiSP_GetALL_Result)" />
           <FunctionImport Name="LoaiSP_ThemLoaiSP">
-            <Parameter Name="TenLoaiSP" Mode="In" Type="String" />
+          <Parameter Name="TenLoaiSP" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="LoaiSP_XoaLoaiSP">
-            <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+          <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SanPham_SP_ChonSPTheoLoai1" ReturnType="Collection(QuanLyCFModel.SanPham_SP_ChonSPTheoLoai1_Result)">
-            <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
+          <Parameter Name="MaLoaiSP" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="SanPham_SP_ChonSPTheoTen" ReturnType="Collection(QuanLyCFModel.SanPham_SP_ChonSPTheoTen_Result)">
-            <Parameter Name="TenSP" Mode="In" Type="String" />
+          <Parameter Name="TenSP" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SanPham_SP_GETALL1" ReturnType="Collection(QuanLyCFModel.SanPham_SP_GETALL1_Result)" />
           <FunctionImport Name="SanPham_SuaSP">
@@ -273,7 +287,24 @@
             <Parameter Name="Anh" Mode="In" Type="Binary" />
           </FunctionImport>
           <FunctionImport Name="SanPham_XoaSP">
-            <Parameter Name="MaSP" Mode="In" Type="Int32" />
+          <Parameter Name="MaSP" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="TaiKhoan" EntityType="QuanLyCFModel.TaiKhoan" />
+          <FunctionImport Name="CTHD_ThemHDCuoi">
+            <Parameter Name="TenKH" Mode="In" Type="String" />
+            <Parameter Name="TenSP" Mode="In" Type="String" />
+            <Parameter Name="DonGia" Mode="In" Type="Double" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="CTHD_ThemSP">
+            <Parameter Name="TenSP" Mode="In" Type="String" />
+            <Parameter Name="DonGia" Mode="In" Type="Double" />
+            <Parameter Name="SoLuong" Mode="In" Type="Int32" />
+            <Parameter Name="GhiChu" Mode="In" Type="String" />
+            <Parameter Name="NgayMuaHang" Mode="In" Type="DateTime" />
+            <Parameter Name="MaHD" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="CTHD_GetALL_Result">
@@ -325,6 +356,14 @@
           <Property Type="Int32" Name="MaLoaiSP" Nullable="true" />
           <Property Type="Binary" Name="Anh" Nullable="true" MaxLength="Max" />
         </ComplexType>
+        <EntityType Name="TaiKhoan">
+          <Key>
+            <PropertyRef Name="TenTK" />
+          </Key>
+          <Property Name="TenTK" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MatKhau" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="admin" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -466,6 +505,17 @@
           <FunctionImportMapping FunctionImportName="SanPham_SuaSP" FunctionName="QuanLyCFModel.Store.SanPham_SuaSP" />
           <FunctionImportMapping FunctionImportName="SanPham_ThemSP" FunctionName="QuanLyCFModel.Store.SanPham_ThemSP" />
           <FunctionImportMapping FunctionImportName="SanPham_XoaSP" FunctionName="QuanLyCFModel.Store.SanPham_XoaSP" />
+          <EntitySetMapping Name="TaiKhoan">
+            <EntityTypeMapping TypeName="QuanLyCFModel.TaiKhoan">
+              <MappingFragment StoreEntitySet="TaiKhoan">
+                <ScalarProperty Name="admin" ColumnName="admin" />
+                <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+                <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CTHD_ThemHDCuoi" FunctionName="QuanLyCFModel.Store.CTHD_ThemHDCuoi" />
+          <FunctionImportMapping FunctionImportName="CTHD_ThemSP" FunctionName="QuanLyCFModel.Store.CTHD_ThemSP" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

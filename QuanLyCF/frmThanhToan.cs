@@ -175,7 +175,22 @@ namespace QuanLyCF
 
         private void btnLuuHD_Click(object sender, EventArgs e)
         {
-           
+            if(MessageBox.Show("bạn có chắc muốn lưu hoá đơn?", "Lưu Hoá đơn",MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            {
+                return;
+            }
+
+            db.HoaDon_LuuHoaDon(tbxTenKH.Text);
+            foreach(DataRow row in cthd.Rows)
+            {
+                MessageBox.Show(row["Tong1"].ToString());
+
+                db.CTHD_ThemHDCuoi("", row["TenSP1"].ToString(),
+                    Convert.ToDouble(row["DonGia1"].ToString()),
+                    Convert.ToInt32(row["SL1"].ToString()),
+                    row["GhiChu1"].ToString(),
+                    DateTime.Now);
+            }
         }
 
         private void btnXuatHD_Click(object sender, EventArgs e)

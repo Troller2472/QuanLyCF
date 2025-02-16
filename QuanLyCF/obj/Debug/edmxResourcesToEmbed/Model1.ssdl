@@ -47,6 +47,14 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="TenTK" />
+    </Key>
+    <Property Name="TenTK" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="MatKhau" Type="nvarchar" MaxLength="50" />
+    <Property Name="admin" Type="int" />
+  </EntityType>
   <Association Name="FK_CTHD_HoaDon">
     <End Role="HoaDon" Type="Self.HoaDon" Multiplicity="0..1" />
     <End Role="CTHD" Type="Self.CTHD" Multiplicity="*" />
@@ -75,14 +83,25 @@
   <Function Name="CTHD_SanPhamTheoMaHD" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="MaHD" Type="int" Mode="In" />
   </Function>
-  <Function Name="HoaDon_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="HoaDon_LuuHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+  <Function Name="CTHD_ThemHDCuoi" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
     <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
     <Parameter Name="DonGia" Type="float" Mode="In" />
     <Parameter Name="SoLuong" Type="int" Mode="In" />
     <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
     <Parameter Name="NgayMuaHang" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="CTHD_ThemSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenSP" Type="nvarchar" Mode="In" />
+    <Parameter Name="DonGia" Type="float" Mode="In" />
+    <Parameter Name="SoLuong" Type="int" Mode="In" />
+    <Parameter Name="GhiChu" Type="nvarchar" Mode="In" />
+    <Parameter Name="NgayMuaHang" Type="datetime" Mode="In" />
+    <Parameter Name="MaHD" Type="int" Mode="In" />
+  </Function>
+  <Function Name="HoaDon_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="HoaDon_LuuHoaDon" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TenKH" Type="nvarchar" Mode="In" />
   </Function>
   <Function Name="LoaiSP_GetALL" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="LoaiSP_ThemLoaiSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -122,6 +141,7 @@
     <EntitySet Name="LoaiSP" EntityType="Self.LoaiSP" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaiKhoan" EntityType="Self.TaiKhoan" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CTHD_HoaDon" Association="Self.FK_CTHD_HoaDon">
       <End Role="HoaDon" EntitySet="HoaDon" />
       <End Role="CTHD" EntitySet="CTHD" />

@@ -32,6 +32,7 @@ namespace QuanLyCF
         public virtual DbSet<LoaiSP> LoaiSP { get; set; }
         public virtual DbSet<SanPham> SanPham { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<TaiKhoan> TaiKhoan { get; set; }
     
         public virtual ObjectResult<CTHD_GetALL_Result> CTHD_GetALL()
         {
@@ -52,33 +53,13 @@ namespace QuanLyCF
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<HoaDon_GetALL_Result>("HoaDon_GetALL");
         }
     
-        public virtual int HoaDon_LuuHoaDon(string tenKH, string tenSP, Nullable<double> donGia, Nullable<int> soLuong, string ghiChu, Nullable<System.DateTime> ngayMuaHang)
+        public virtual int HoaDon_LuuHoaDon(string tenKH)
         {
             var tenKHParameter = tenKH != null ?
                 new ObjectParameter("TenKH", tenKH) :
                 new ObjectParameter("TenKH", typeof(string));
     
-            var tenSPParameter = tenSP != null ?
-                new ObjectParameter("TenSP", tenSP) :
-                new ObjectParameter("TenSP", typeof(string));
-    
-            var donGiaParameter = donGia.HasValue ?
-                new ObjectParameter("DonGia", donGia) :
-                new ObjectParameter("DonGia", typeof(double));
-    
-            var soLuongParameter = soLuong.HasValue ?
-                new ObjectParameter("SoLuong", soLuong) :
-                new ObjectParameter("SoLuong", typeof(int));
-    
-            var ghiChuParameter = ghiChu != null ?
-                new ObjectParameter("GhiChu", ghiChu) :
-                new ObjectParameter("GhiChu", typeof(string));
-    
-            var ngayMuaHangParameter = ngayMuaHang.HasValue ?
-                new ObjectParameter("NgayMuaHang", ngayMuaHang) :
-                new ObjectParameter("NgayMuaHang", typeof(System.DateTime));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("HoaDon_LuuHoaDon", tenKHParameter, tenSPParameter, donGiaParameter, soLuongParameter, ghiChuParameter, ngayMuaHangParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("HoaDon_LuuHoaDon", tenKHParameter);
         }
     
         public virtual ObjectResult<LoaiSP_GetALL_Result> LoaiSP_GetALL()
@@ -188,6 +169,64 @@ namespace QuanLyCF
                 new ObjectParameter("MaSP", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SanPham_XoaSP", maSPParameter);
+        }
+    
+        public virtual int CTHD_ThemHDCuoi(string tenKH, string tenSP, Nullable<double> donGia, Nullable<int> soLuong, string ghiChu, Nullable<System.DateTime> ngayMuaHang)
+        {
+            var tenKHParameter = tenKH != null ?
+                new ObjectParameter("TenKH", tenKH) :
+                new ObjectParameter("TenKH", typeof(string));
+    
+            var tenSPParameter = tenSP != null ?
+                new ObjectParameter("TenSP", tenSP) :
+                new ObjectParameter("TenSP", typeof(string));
+    
+            var donGiaParameter = donGia.HasValue ?
+                new ObjectParameter("DonGia", donGia) :
+                new ObjectParameter("DonGia", typeof(double));
+    
+            var soLuongParameter = soLuong.HasValue ?
+                new ObjectParameter("SoLuong", soLuong) :
+                new ObjectParameter("SoLuong", typeof(int));
+    
+            var ghiChuParameter = ghiChu != null ?
+                new ObjectParameter("GhiChu", ghiChu) :
+                new ObjectParameter("GhiChu", typeof(string));
+    
+            var ngayMuaHangParameter = ngayMuaHang.HasValue ?
+                new ObjectParameter("NgayMuaHang", ngayMuaHang) :
+                new ObjectParameter("NgayMuaHang", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CTHD_ThemHDCuoi", tenKHParameter, tenSPParameter, donGiaParameter, soLuongParameter, ghiChuParameter, ngayMuaHangParameter);
+        }
+    
+        public virtual int CTHD_ThemSP(string tenSP, Nullable<double> donGia, Nullable<int> soLuong, string ghiChu, Nullable<System.DateTime> ngayMuaHang, Nullable<int> maHD)
+        {
+            var tenSPParameter = tenSP != null ?
+                new ObjectParameter("TenSP", tenSP) :
+                new ObjectParameter("TenSP", typeof(string));
+    
+            var donGiaParameter = donGia.HasValue ?
+                new ObjectParameter("DonGia", donGia) :
+                new ObjectParameter("DonGia", typeof(double));
+    
+            var soLuongParameter = soLuong.HasValue ?
+                new ObjectParameter("SoLuong", soLuong) :
+                new ObjectParameter("SoLuong", typeof(int));
+    
+            var ghiChuParameter = ghiChu != null ?
+                new ObjectParameter("GhiChu", ghiChu) :
+                new ObjectParameter("GhiChu", typeof(string));
+    
+            var ngayMuaHangParameter = ngayMuaHang.HasValue ?
+                new ObjectParameter("NgayMuaHang", ngayMuaHang) :
+                new ObjectParameter("NgayMuaHang", typeof(System.DateTime));
+    
+            var maHDParameter = maHD.HasValue ?
+                new ObjectParameter("MaHD", maHD) :
+                new ObjectParameter("MaHD", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("CTHD_ThemSP", tenSPParameter, donGiaParameter, soLuongParameter, ghiChuParameter, ngayMuaHangParameter, maHDParameter);
         }
     }
 }

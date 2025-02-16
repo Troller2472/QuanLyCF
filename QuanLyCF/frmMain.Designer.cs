@@ -40,7 +40,10 @@
             this.pnlThanhToan = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.username = new System.Windows.Forms.ToolStripStatusLabel();
+            this.admin = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.btnNhanVien = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -50,6 +53,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+            this.panel1.Controls.Add(this.btnNhanVien);
             this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.pictureBox2);
             this.panel1.Controls.Add(this.btnSanPham);
@@ -72,7 +76,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(194, 55);
             this.button3.TabIndex = 2;
-            this.button3.Text = "Tổng doanh thu";
+            this.button3.Text = "Doanh Thu";
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
@@ -89,7 +93,7 @@
             // btnSanPham
             // 
             this.btnSanPham.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSanPham.Location = new System.Drawing.Point(243, 46);
+            this.btnSanPham.Location = new System.Drawing.Point(155, 46);
             this.btnSanPham.Name = "btnSanPham";
             this.btnSanPham.Size = new System.Drawing.Size(158, 55);
             this.btnSanPham.TabIndex = 1;
@@ -110,7 +114,7 @@
             // btnThanhToan
             // 
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThanhToan.Location = new System.Drawing.Point(37, 46);
+            this.btnThanhToan.Location = new System.Drawing.Point(13, 46);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(136, 55);
             this.btnThanhToan.TabIndex = 0;
@@ -140,7 +144,9 @@
             // statusStrip1
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
+            this.toolStripStatusLabel1,
+            this.username,
+            this.admin});
             this.statusStrip1.Location = new System.Drawing.Point(0, 698);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(1280, 22);
@@ -153,11 +159,33 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
             this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
             // 
+            // username
+            // 
+            this.username.Name = "username";
+            this.username.Size = new System.Drawing.Size(59, 17);
+            this.username.Text = "username";
+            // 
+            // admin
+            // 
+            this.admin.Name = "admin";
+            this.admin.Size = new System.Drawing.Size(41, 17);
+            this.admin.Text = "admin";
+            // 
             // timer1
             // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // btnNhanVien
+            // 
+            this.btnNhanVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNhanVien.Location = new System.Drawing.Point(319, 46);
+            this.btnNhanVien.Name = "btnNhanVien";
+            this.btnNhanVien.Size = new System.Drawing.Size(158, 55);
+            this.btnNhanVien.TabIndex = 3;
+            this.btnNhanVien.Text = "Nhân Viên";
+            this.btnNhanVien.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
@@ -198,5 +226,8 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripStatusLabel username;
+        private System.Windows.Forms.ToolStripStatusLabel admin;
+        private System.Windows.Forms.Button btnNhanVien;
     }
 }

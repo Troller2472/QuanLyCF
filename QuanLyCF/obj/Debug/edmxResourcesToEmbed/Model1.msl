@@ -136,5 +136,16 @@
     <FunctionImportMapping FunctionImportName="SanPham_SuaSP" FunctionName="QuanLyCFModel.Store.SanPham_SuaSP" />
     <FunctionImportMapping FunctionImportName="SanPham_ThemSP" FunctionName="QuanLyCFModel.Store.SanPham_ThemSP" />
     <FunctionImportMapping FunctionImportName="SanPham_XoaSP" FunctionName="QuanLyCFModel.Store.SanPham_XoaSP" />
+    <EntitySetMapping Name="TaiKhoan">
+      <EntityTypeMapping TypeName="QuanLyCFModel.TaiKhoan">
+        <MappingFragment StoreEntitySet="TaiKhoan">
+          <ScalarProperty Name="admin" ColumnName="admin" />
+          <ScalarProperty Name="MatKhau" ColumnName="MatKhau" />
+          <ScalarProperty Name="TenTK" ColumnName="TenTK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="CTHD_ThemHDCuoi" FunctionName="QuanLyCFModel.Store.CTHD_ThemHDCuoi" />
+    <FunctionImportMapping FunctionImportName="CTHD_ThemSP" FunctionName="QuanLyCFModel.Store.CTHD_ThemSP" />
   </EntityContainerMapping>
 </Mapping>
