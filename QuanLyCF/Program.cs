@@ -16,7 +16,15 @@ namespace QuanLyCF
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmLogin());
+
+
+            frmGioiThieu f = new frmGioiThieu();
+
+            if (f.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new frmLogin());
+            }
+                
             
         }
     }
